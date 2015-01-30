@@ -1,0 +1,17 @@
+{
+    "contents" : "######################################################################\n#The intent of this project to to take a list of breakdown voltages\n#and calculate the breakdown voltages, create a wiebull plot, calculate\n#the weibull parameters, and construct a Weibull Distribution\n#\n#The first line of each file should be the material thickness in microns\n#\n#The rest of the numbers are the breakdown voltages\n######################################################################\n\nlibrary(\"ggplot2\")\nlibrary(\"plyr\")\nlibrary(\"ggthemes\")\nlibrary(\"reshape2\")\n\n\nfilename <- \"SampleBreakdownSet.txt\"\n\nd <- read.table(filename, header = FALSE, sep = \"\")\nhead(d)\ntail(d)\nsummary(d)\nnrow(d)\n\n#Extract thickness from the dataset; set to variable t\nt = head(d,1)\nt\nt[1,1]\n\n#Extract the breakdown voltages and toss into dataset, BDV\nBDV = tail(d,(nrow(d)-1))\nBDV\n\n#Calculates the breakdown field from the thickness and BDV\nBDF = BDV / t[1,1]\nBDF\n\n",
+    "created" : 1422568204834.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "180547559",
+    "id" : "A629CA5D",
+    "lastKnownWriteTime" : 1422632498,
+    "path" : "~/Research/NSF EFRI/Breakdown Data/Automated Weibull.R",
+    "project_path" : "Automated Weibull.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
