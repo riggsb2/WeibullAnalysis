@@ -29,21 +29,24 @@ BDV = tail(d,(nrow(d)-1))
 #Calculates the breakdown field from the thickness and BDV
 BDF = (BDV*10000) / t
 
-
 # Estimate k and c using mean and standard deviation.
 
 k <- (sd(BDF$V1)/mean(BDF$V1))^(-1.086)
 c <- mean(BDF$V1)/(gamma(1+1/k))
-k
-c
+
 
 #Plots a QQ plot to show the goodness of fit
 qqPlot(BDF, distribution="weibull", scale = c, shape= k, 
        las=1, pch=19)
 
-#Constructs the Weibull plot from the shape and scale parameter
-plot(dweibull(x = BDF$V1, shape = k, scale = 1.97e6, log = FALSE))
-pweibull(q = BDF, shape = 34, scale = 1, lower.tail = TRUE, log BDF= FALSE)
+#Cacluates the failure probability for a given set of breakdown fields
+p <- pweibull(q = BDF$V1, shape = k, scale = c, 
+              lower.tail = TRUE, log.p = FALSE)
+#Puts breakdown voltages and probabilities of failure in a datafram
+df <- data.frame(BDF$V1,p)
 
-
+#Plots the dataframe
+ggplot(df, aes(BDF.V1, p)) +
+  geom_smooth() +
+  ggtitle(paste0("Weibull Distributions for ", filename))
 
