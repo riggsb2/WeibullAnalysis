@@ -46,15 +46,18 @@ df <- data.frame(BDF$V1,p)
 
 #Plots the dataframe
 ggplot(df, aes(BDF.V1, p)) +
-  geom_smooth() +
+  geom_smooth(size = 1) +
   ggtitle(paste0("Weibull Distributions for\n", filename)) +
   scale_y_continuous("Probability of Failure", labels = percent) +
-  scale_x_continuous("Breakdown Field / MV*cm^-1", breaks = 1:3) +
+  scale_x_continuous("Breakdown Field / MV*cm^-1", breaks = seq(1,10,0.5)) +
+  theme_bw() +
   theme(plot.title = element_text(size = 20, face = "bold", color = "black"),
         axis.title.x = element_text(size = 16, face = "bold", color = "black"),
         axis.text.x = element_text(size = 14),
         axis.title.y = element_text(size = 16, face = "bold", color = "black"),
-        axis.text.y = element_text(size = 14))
+        axis.text.y = element_text(size = 14),
+        panel.background = element_rect(color = "black"))
+  
   
 
 
