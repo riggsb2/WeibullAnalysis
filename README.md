@@ -1,4 +1,4 @@
-Work down to automate the Weibull analysis that I did by had for my 
+Work down to automate the Weibull analysis that I did by hand for my 
 dissertation.
 
 Input:
